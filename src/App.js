@@ -23,24 +23,23 @@ function App() {
   };
 
   const loadData = async () => {
-    let res = await fetch(`${server}/descriptions.json`).then((res) =>
+    let description = await fetch(`${server}/descriptions.json`).then((res) =>
       res.json()
     );
 
-    let resolve = await fetch(`${server}/pokedex.json`).then((res) =>
+    let pokeFetch = await fetch(`${server}/pokedex.json`).then((res) =>
       res.json()
     );
-    resolve = resolve[3].Pokedex;
+    pokeFetch = pokeFetch[3].Pokedex;
 
-    resolve = resolve.map((pokemon, index) => {
-      debugger;
-      pokemon.description = res[index].description;
-      pokemon.image = res[index].image;
+    pokeFetch = pokeFetch.map((pokemon, index) => {
+      pokemon.description = description[index].description;
+      pokemon.image = description[index].image;
       return pokemon;
     });
 
-    setPokedex(resolve);
-    setFiltered(resolve);
+    setPokedex(pokeFetch);
+    setFiltered(pokeFetch);
   };
 
   useEffect(() => {
@@ -58,6 +57,11 @@ function App() {
                 key={pokemon.id}
                 onClick={() => getMoreInfo(pokemon.id)}
               >
+                <img
+                  className="pokemon-list-img"
+                  src={`${server}/${pokemon.image.thumbnail}`}
+                  alt="poke"
+                />
                 {pokemon.name}
               </li>
             ))}

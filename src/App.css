@@ -1,3 +1,11 @@
+.pokemon-list-item {
+  font-size: 30px;
+}
+
 .pokemon-list-item:hover {
   color: blue;
+}
+
+.pokemon-list-img {
+  height: 30px;
 }
