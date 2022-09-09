@@ -17,7 +17,6 @@ function App() {
       })
     );
   };
-
   const getMoreInfo = (id) => {
     setSelectedPokemon(pokedex[id - 1]);
   };
@@ -71,10 +70,16 @@ function App() {
         <div>
           <h1>{selectedPokemon.name}</h1>
           <p>{selectedPokemon.description}</p>
+          <p>
+            {selectedPokemon.type.map((item) => {
+              return <p style={{ backgroundColor: "green" }}>{item}</p>;
+            })}
+          </p>
           <img
             src={`${server}/${selectedPokemon.image.image}`}
             alt={selectedPokemon.name}
           />
+
           <button type="button" onClick={() => setSelectedPokemon(null)}>
             Back
           </button>
